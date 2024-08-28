@@ -83,6 +83,7 @@ public class Main extends Application {
 			//the stage and show the stage
 			Scene scene = new Scene(root,350,350);
 			primaryStage.setScene(scene);
+			primaryStage.setTitle("User Interface I");
 			primaryStage.show();
 			
 			//displays date and time to TextField when menu1 is clicked
