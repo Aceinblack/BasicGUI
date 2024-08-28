@@ -38,7 +38,7 @@ public class Main extends Application {
 	public void start(Stage primaryStage) {
 		try {
 			
-			Label displayLabel = new Label("Date & Time:");
+			Label displayLabel = new Label("Hello World!");
 			TextField display = new TextField();
 			display.setEditable(false);
 			
@@ -90,6 +90,7 @@ public class Main extends Application {
 			option1.setOnAction((EventHandler<ActionEvent>) new EventHandler<ActionEvent>() {
 				@Override
 		         public void handle(ActionEvent event) {
+					displayLabel.setText("Date & Time:");
 					display.setText("" + LocalDateTime.now()); 
 				}
 			});
@@ -105,7 +106,6 @@ public class Main extends Application {
 						PrintWriter(file);
 						
 						write.println(display.getText());
-						display.setText(""); 
 						displayLabel.setText("Successfully printed date and time to file log.txt"); 
 						write.close();
 					} catch (IOException e) {
@@ -126,7 +126,9 @@ public class Main extends Application {
 			        int hue = random.nextInt(206) + 50;
 			        Color color = Color.rgb(0, hue, 0);
 			        root.setBackground(new Background(new BackgroundFill(color, null, null)));
-			        display.setText("Background color changed. Hue: " + hue); 
+			        displayLabel.setText("Can barely read this.");
+			        display.setText("Background color changed!");
+			        option3.setText("Green Hue: " + hue);
 				}
 			});
 			
