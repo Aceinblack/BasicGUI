@@ -15,6 +15,7 @@ import javafx.scene.control.MenuBar;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.Background;
 import javafx.scene.layout.BackgroundFill;
+import javafx.scene.layout.CornerRadii;
 import javafx.scene.layout.GridPane;
 import javafx.scene.paint.Color;
 
@@ -27,11 +28,14 @@ import java.util.Random;
 
 /**
  * Creates a simply GUI using JavaFX
- * Modified the label and textfield
- * to be more descriptive of the last menu
- * option selected
+ * * Modified the label and TextField
+ *   to be more descriptive of the last menu
+ *   option selected. 
+ * * Added a separate menu
+ *   to the MenuBar to reset the color of the panel
+ *   to its default color transparent
  * @author Brinsly Yendeh
- * @version 2.0 08/28/2024
+ * @version 2.1 09/08/2024
  */
 		
 public class Main extends Application {
@@ -48,11 +52,13 @@ public class Main extends Application {
 			Button option2 = new Button("Print to file");
 			Button option3 = new Button("Change Background Font");
 			Button option4 = new Button("Exit");
+			Button option5 = new Button("Reset color");
 			
 			option1.setPrefWidth(200);
 			option2.setPrefWidth(200);
 			option3.setPrefWidth(200);
 			option4.setPrefWidth(200);
+			option5.setPrefWidth(200);
 			
 			//create menu object and menu sub options
 			//and assign the buttons to them
@@ -61,12 +67,17 @@ public class Main extends Application {
 			CustomMenuItem menu2 = new CustomMenuItem(option2);
 			CustomMenuItem menu3 = new CustomMenuItem(option3);
 			CustomMenuItem menu4 = new CustomMenuItem(option4);
+			CustomMenuItem menu5 = new CustomMenuItem(option5);
 			
-			//pass all the menuItems to the menu object
-			//create the menu bar and pass the menu to it
+			
+			Menu menuReset = new Menu("Reset");
+			
+			//pass all the menuItems to the menu and menuRest objects
+			//create the menu bar and pass the menu and menuReset to it
 			menu.getItems().addAll(menu1, menu2, menu3, menu4);
+			menuReset.getItems().add(menu5);
 			MenuBar bar = new MenuBar();
-			bar.getMenus().add(menu);
+			bar.getMenus().addAll(menu, menuReset);
 			bar.setPrefWidth(330);
 			
 			//Create a layout and add the created components
@@ -127,7 +138,7 @@ public class Main extends Application {
 			        int hue = random.nextInt(206) + 50;
 			        Color color = Color.rgb(0, hue, 0);
 			        root.setBackground(new Background(new BackgroundFill(color, null, null)));
-			        displayLabel.setText("Color change:");
+			        displayLabel.setText("Color changed:");
 			        display.setText("Background color changed!");
 			        option3.setText("Green Hue: " + hue);
 				}
@@ -138,6 +149,16 @@ public class Main extends Application {
 				@Override
 		         public void handle(ActionEvent event) {
 					Platform.exit();
+				}
+			});
+			
+			option5.setOnAction((EventHandler<ActionEvent>) new EventHandler<ActionEvent>() {
+				@Override
+		         public void handle(ActionEvent event) {
+					root.setBackground(new Background(new BackgroundFill(Color.TRANSPARENT, null, null)));
+					displayLabel.setText("Color changed:");
+			        display.setText("Background color Reset!");
+					option3.setText("Change Background Font");
 				}
 			});
 			
