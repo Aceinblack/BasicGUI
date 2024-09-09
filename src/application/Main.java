@@ -1,7 +1,5 @@
 package application;
 
-
-
 import javafx.application.Application;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
@@ -29,6 +27,9 @@ import java.util.Random;
 
 /**
  * Creates a simply GUI using JavaFX
+ * Modified the label and textfield
+ * to be more descriptive of the last menu
+ * option selected
  * @author Brinsly Yendeh
  * @version 2.0 08/28/2024
  */
@@ -81,7 +82,7 @@ public class Main extends Application {
 			//create a scene and pass it the layout
 			//as well as its size then pass that scene to
 			//the stage and show the stage
-			Scene scene = new Scene(root,350,350);
+			Scene scene = new Scene(root, 350, 350);
 			primaryStage.setScene(scene);
 			primaryStage.setTitle("User Interface I");
 			primaryStage.show();
@@ -102,11 +103,11 @@ public class Main extends Application {
 					try {
 						String fileName = "log.txt";
 						FileWriter file = new FileWriter(fileName);
-						PrintWriter write = new 
-						PrintWriter(file);
+						PrintWriter write = new PrintWriter(file);
 						
 						write.println(display.getText());
-						displayLabel.setText("Successfully printed date and time to file log.txt"); 
+						displayLabel.setText("Printing to file:");
+						display.setText("Successfully printed date and time to file " + fileName); 
 						write.close();
 					} catch (IOException e) {
 						// TODO Auto-generated catch block
@@ -117,7 +118,7 @@ public class Main extends Application {
 			});
 			
 			//create a random number and with it create a random hue of the color green
-			//by string rgb to (0 red, random green, 0 blue). The + 56 is to account
+			//by string rgb to (0 red, random green, 0 blue). The + 50 is to account
 			//for hue's too dark and make them visibly more green
 			option3.setOnAction((EventHandler<ActionEvent>) new EventHandler<ActionEvent>() {
 				@Override
@@ -126,7 +127,7 @@ public class Main extends Application {
 			        int hue = random.nextInt(206) + 50;
 			        Color color = Color.rgb(0, hue, 0);
 			        root.setBackground(new Background(new BackgroundFill(color, null, null)));
-			        displayLabel.setText("Can barely read this.");
+			        displayLabel.setText("Color change:");
 			        display.setText("Background color changed!");
 			        option3.setText("Green Hue: " + hue);
 				}
@@ -136,7 +137,7 @@ public class Main extends Application {
 			option4.setOnAction((EventHandler<ActionEvent>) new EventHandler<ActionEvent>() {
 				@Override
 		         public void handle(ActionEvent event) {
-					Platform.exit(); 
+					Platform.exit();
 				}
 			});
 			
